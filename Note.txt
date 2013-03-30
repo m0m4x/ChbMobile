@@ -1,0 +1,60 @@
+//campi da text a number
+	        	//view.loadUrl("javascript:"+
+	        	//		"document.getElementById('id_user').setAttribute('type', 'number');"+
+	        	//		"document.getElementById('tk_password').setAttribute('type', 'number');"+
+	        	//		"var diva = document.createElement('h1');"+
+	        	//		"diva.innerHTML = '<div style=\"text-align:center;\"><img src=\"https://www.inbank.it/static/common/img/loghi/logo08673.jpg\" width=\"196\" height=\"87\" style=\"margin:auto;\"></div>';"+
+	        	//		"document.getElementById('frmlogin').parentNode.insertBefore(diva,document.getElementById('frmlogin'));"+
+	        	//		"document.getElementById('frmlogin').parentNode.removeChild(document.getElementById('frmlogin').parentNode.firstChild);"+
+	        	//		"document.getElementById('frmlogin').parentNode.removeChild(document.getElementById('frmlogin').parentNode.firstChild);"+
+	        	//		"document.getElementById('frmlogin').removeChild(document.getElementById('frmlogin').lastChild);"+
+	        	//		"document.getElementById('frmlogin').removeChild(document.getElementById('frmlogin').lastChild);"+
+	        	//		"document.getElementById('mm1').parentNode.removeChild(document.getElementById('mm1'));"+
+	        	//		"document.getElementById('mobileMenu_mm1').parentNode.removeChild(document.getElementById('mobileMenu_mm1'));"+
+	        	//		"setTimeout(function() {Android.OkDone();},250);"
+	        	//		);
+
+
+
+
+
+//jsoup_getHomepage(myWebView,"https://www.inbank.it/mobi/flow?_flowId=AccessFlow&_flowExecutionKey=e1s1");
+
+
+
+    private void jsoup_getHomepage(WebView thisWebView, String url) {
+    	
+    	//Load data
+        Document doc = null;
+        try {
+			doc = Jsoup.connect(url).get();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        //Reset Links
+        Elements links = doc.select("[href]");
+        Elements media = doc.select("[src]");
+        for (Element src : links) {
+        	src.attr("href", "https://www.inbank.it/" + src.attr("href"));
+        }
+        for (Element src : media) {
+        	src.attr("src", "https://www.inbank.it/" + src.attr("src"));
+        }
+        
+        Elements ele = doc.select("#id_user");
+        ele.attr("type", "number");
+        
+        ele = doc.select(".login h1");
+        ele.html("<div style=\"text-align:center;width:200;\"><img src=\"https://www.inbank.it/static/common/img/loghi/logo08673.jpg\" style=\"margin:auto;\"></div>".toString());
+        
+        ele = doc.select("nav");
+        ele.html("</br>");
+        
+        ele = doc.select("fieldset ~ p");
+        ele.remove();
+        
+        //Load in Above
+        thisWebView.loadData(doc.toString(), "text/html; charset=UTF-8", null);
+    }
