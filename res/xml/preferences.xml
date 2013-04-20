@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+	<PreferenceCategory 
+	android:title="@string/pref_main_title"
+	android:key="pref_main">
+	    
+	    <CheckBoxPreference android:title="@string/pref_rcredentials_text" 
+	        android:summary="@string/pref_rcredentials_summary" 
+	        android:defaultValue="false" 
+	        android:key="pref_rcredentials"/>
+	    
+	</PreferenceCategory>
+    
+
+</PreferenceScreen>

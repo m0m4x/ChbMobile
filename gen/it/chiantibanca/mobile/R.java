@@ -11,31 +11,50 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_action_search=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int ic_launcher=0x7f020000;
+        public static final int logo_chb=0x7f020001;
     }
     public static final class id {
-        public static final int buttondbg=0x7f070003;
-        public static final int layoutload=0x7f070001;
-        public static final int layoutview=0x7f070004;
-        public static final int loadview=0x7f070002;
-        public static final int menu_settings=0x7f070006;
-        public static final int viewSwitcher=0x7f070000;
-        public static final int webview=0x7f070005;
+        public static final int buttondbg=0x7f080003;
+        public static final int layoutload=0x7f080001;
+        public static final int layoutview=0x7f080004;
+        public static final int loadview=0x7f080002;
+        public static final int menu_settings=0x7f080006;
+        public static final int viewSwitcher=0x7f080000;
+        public static final int webview=0x7f080005;
     }
     public static final class layout {
         public static final int activity_chb_mobile=0x7f030000;
     }
     public static final class menu {
-        public static final int activity_chb_mobile=0x7f060000;
+        public static final int menu=0x7f070000;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int hello_world=0x7f040001;
-        public static final int menu_settings=0x7f040002;
-        public static final int title_activity_chb_mobile=0x7f040003;
+        public static final int activity_chb_mobile=0x7f050005;
+        public static final int activity_chb_title=0x7f050006;
+        public static final int activity_settings_title=0x7f050004;
+        public static final int app_name=0x7f050000;
+        public static final int dialog_accept=0x7f050012;
+        public static final int dialog_chkroot_message=0x7f05000d;
+        public static final int dialog_chkroot_title=0x7f05000c;
+        public static final int dialog_disclaimer_message=0x7f05000f;
+        public static final int dialog_disclaimer_title=0x7f05000e;
+        public static final int dialog_no=0x7f050011;
+        public static final int dialog_ok=0x7f050010;
+        public static final int dialog_rcredentials_message=0x7f05000b;
+        public static final int dialog_rcredentials_title=0x7f05000a;
+        public static final int dialog_reject=0x7f050013;
+        public static final int pref_main_title=0x7f050009;
+        public static final int pref_rcredentials_summary=0x7f050002;
+        public static final int pref_rcredentials_summary_dis=0x7f050003;
+        public static final int pref_rcredentials_text=0x7f050001;
+        public static final int text_dbug=0x7f050007;
+        public static final int text_pref=0x7f050008;
     }
     public static final class style {
-        public static final int AppTheme=0x7f050000;
+        public static final int ThemeSelector=0x7f060000;
+    }
+    public static final class xml {
+        public static final int preferences=0x7f040000;
     }
 }
