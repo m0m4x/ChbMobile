@@ -30,26 +30,28 @@ public final class R {
         public static final int menu=0x7f070000;
     }
     public static final class string {
-        public static final int activity_chb_mobile=0x7f050005;
-        public static final int activity_chb_title=0x7f050006;
-        public static final int activity_settings_title=0x7f050004;
+        public static final int activity_chb_mobile=0x7f050007;
+        public static final int activity_chb_title=0x7f050008;
+        public static final int activity_settings_title=0x7f050006;
         public static final int app_name=0x7f050000;
-        public static final int dialog_accept=0x7f050012;
-        public static final int dialog_chkroot_message=0x7f05000d;
-        public static final int dialog_chkroot_title=0x7f05000c;
-        public static final int dialog_disclaimer_message=0x7f05000f;
-        public static final int dialog_disclaimer_title=0x7f05000e;
-        public static final int dialog_no=0x7f050011;
-        public static final int dialog_ok=0x7f050010;
-        public static final int dialog_rcredentials_message=0x7f05000b;
-        public static final int dialog_rcredentials_title=0x7f05000a;
-        public static final int dialog_reject=0x7f050013;
-        public static final int pref_main_title=0x7f050009;
+        public static final int dialog_accept=0x7f050014;
+        public static final int dialog_chkroot_message=0x7f05000f;
+        public static final int dialog_chkroot_title=0x7f05000e;
+        public static final int dialog_disclaimer_message=0x7f050011;
+        public static final int dialog_disclaimer_title=0x7f050010;
+        public static final int dialog_no=0x7f050013;
+        public static final int dialog_ok=0x7f050012;
+        public static final int dialog_rcredentials_message=0x7f05000d;
+        public static final int dialog_rcredentials_title=0x7f05000c;
+        public static final int dialog_reject=0x7f050015;
+        public static final int pref_main_title=0x7f05000b;
         public static final int pref_rcredentials_summary=0x7f050002;
         public static final int pref_rcredentials_summary_dis=0x7f050003;
         public static final int pref_rcredentials_text=0x7f050001;
-        public static final int text_dbug=0x7f050007;
-        public static final int text_pref=0x7f050008;
+        public static final int pref_vcredentials_summary=0x7f050005;
+        public static final int pref_vcredentials_text=0x7f050004;
+        public static final int text_dbug=0x7f050009;
+        public static final int text_pref=0x7f05000a;
     }
     public static final class style {
         public static final int ThemeSelector=0x7f060000;

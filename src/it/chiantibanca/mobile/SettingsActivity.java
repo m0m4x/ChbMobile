@@ -1,5 +1,7 @@
 package it.chiantibanca.mobile;
 
+import it.chiantibanca.mobile.SaveCredentialsDialogFragment.NoticeDialogListener;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -16,9 +18,9 @@ public class SettingsActivity extends PreferenceActivity
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
         
-        CheckBoxPreference ChkBoxPreference = (CheckBoxPreference) findPreference("pref_rcredentials");
+        CheckBoxPreference ChkBoxRCredPreference = (CheckBoxPreference) findPreference("pref_rcredentials");
         
-        ChkBoxPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+        ChkBoxRCredPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 if ((Boolean) newValue == false) {
@@ -38,6 +40,20 @@ public class SettingsActivity extends PreferenceActivity
                 return true;
             }
         });
+        
+        CheckBoxPreference ChkBoxVCredPreference = (CheckBoxPreference) findPreference("pref_vcredentials");
+        
+        ChkBoxVCredPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor sharedPrefeditor = sharedPref.edit();
+                sharedPrefeditor.putBoolean("pref_vcredentials_needreset", true);
+                sharedPrefeditor.commit();
+                return true;
+            }
+        });
+        
         
     }
     

@@ -31,10 +31,13 @@ public class ChbMobile extends Activity
 	WebView myLoadView;
 	static ViewSwitcher switcher;
 	
-	int loaded_page = 0;
+	public int loaded_page = 0;
 	
 	static View layout1;
 	static View layout2;
+	
+    private Bundle LastLoginData;
+    private Boolean ToValidateLoginData;
 	
     @SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -54,6 +57,9 @@ public class ChbMobile extends Activity
         
         //Preferenze Iniziali
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        
+        LastLoginData = null;
+        ToValidateLoginData = false;
         
         // WebView
 	        //Impostazioni
@@ -135,6 +141,35 @@ public class ChbMobile extends Activity
     	super.onDestroy();
     }
     
+    @Override
+    public void onResume(){
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		if(sharedPref.getBoolean("pref_vcredentials_needreset", false) == true){
+			SharedPreferences.Editor sharedPrefeditor = sharedPref.edit();
+			sharedPrefeditor.putBoolean("pref_vcredentials_needreset", false);
+			sharedPrefeditor.commit();
+			
+			//Imposta campo password come testo (o vice) alle pagine gia caricate
+			if(sharedPref.getBoolean("pref_vcredentials", false) == true){
+				myWebView.loadUrl("javascript:"+
+		            	"	var elemDOM = document.getElementById('id_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }" +
+		            	"	var elemDOM = document.getElementById('old_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }" +
+		            	"	var elemDOM = document.getElementById('new_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }" +
+		            	"	var elemDOM = document.getElementById('confirm_new_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }"+
+		            	"");
+			}else{
+				myWebView.loadUrl("javascript:"+
+		            	"	var elemDOM = document.getElementById('id_password'); if(elemDOM){ elemDOM.setAttribute('type', 'password'); }" +
+		            	"	var elemDOM = document.getElementById('old_password'); if(elemDOM){ elemDOM.setAttribute('type', 'password'); }" +
+		            	"	var elemDOM = document.getElementById('new_password'); if(elemDOM){ elemDOM.setAttribute('type', 'password'); }" +
+		            	"	var elemDOM = document.getElementById('confirm_new_password'); if(elemDOM){ elemDOM.setAttribute('type', 'password'); }"+
+		            	"");
+			}
+		}
+    	super.onResume();
+    }
+    
+    
     private final  Runnable longOperation = new Runnable(){
         @Override
         public void run() {
@@ -151,9 +186,35 @@ public class ChbMobile extends Activity
      public void handleMessage(Message msg) {
     	
 
-    	 
     	if (msg.getData().getString("action") == "js") {
          
+    		String body = msg.getData().getString("arg2", "");
+    		String successText = msg.getData().getString("arg3", "");
+        	//Indentifica la pagina caricata (per tasto back)
+	    		//mobile clearfix
+	    		//bodyMobile pass-page
+	    		//bodyMobile
+	        	if(body.contains("clearfix")){
+	        		loaded_page = 0;
+	        	} else if (body.contains("pass-page")) {
+	        		loaded_page = 1;
+	        	} else if (body.contains("bodyMobile")) {
+	        		loaded_page = 2;
+	        	}
+        	
+	        //Validazione cambio password
+        	if(	ToValidateLoginData == true && 
+        		successText.contains("successo") && 
+        		LastLoginData != null){
+        		
+        		 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        		 SharedPreferences.Editor sharedPrefeditor = sharedPref.edit();
+        		 sharedPrefeditor.putString("cred_user", LastLoginData.getString("arg1"));
+            	 sharedPrefeditor.putString("cred_pass", LastLoginData.getString("arg2"));
+            	 sharedPrefeditor.commit();
+        	}
+        			
+    		//Visualizza Webview
         	 if (msg.getData().getString("arg1") == "loadok" || msg.getData().getString("arg1") == "simloadok") {
     			 if (switcher.getCurrentView() != layout2)
     				 switcher.showNext();
@@ -181,11 +242,19 @@ public class ChbMobile extends Activity
             	 
              } else if(pref_rcredentials == true) {
             	 
+            	 LastLoginData = msg.getData();
+            	 
                  //Salva Utente e password
             	 SharedPreferences.Editor sharedPrefeditor = sharedPref.edit();
-            	 sharedPrefeditor.putString("cred_user", msg.getData().getString("arg1"));
-            	 sharedPrefeditor.putString("cred_pass", msg.getData().getString("arg2"));
-            	 sharedPrefeditor.commit();
+            	 String newuser = msg.getData().getString("arg1", null);
+            	 if (newuser.equals("refresh")) {
+            		 //Non aggiornare niente - Imposta flag da aggiornare password
+            		 ToValidateLoginData = true;
+            	 }else{
+            		 sharedPrefeditor.putString("cred_user", msg.getData().getString("arg1"));
+                	 sharedPrefeditor.putString("cred_pass", msg.getData().getString("arg2"));
+                	 sharedPrefeditor.commit();
+            	 }
                  
              }
              
@@ -212,27 +281,17 @@ public class ChbMobile extends Activity
             mContext = c;
         }
 
-        public void OkDone(String body) {
+        public void OkDone(String body,String successText) {
         	
 	       	//Toast toast = Toast.makeText(getBaseContext(), "loaded", Toast.LENGTH_SHORT);
 	   		//toast.show();
-        	
-        	//Indentifica la pagina caricata (per tasto back)
-	    		//mobile clearfix
-	    		//bodyMobile pass-page
-	    		//bodyMobile
-        	if(body.contains("clearfix")){
-        		loaded_page = 0;
-        	} else if (body.contains("pass-page")) {
-        		loaded_page = 1;
-        	} else if (body.contains("bodyMobile")) {
-        		loaded_page = 2;
-        	}
         	
         	Message msg = new Message();
             Bundle b = new Bundle();
             b.putString("action", "js");
             b.putString("arg1", "loadok");
+            b.putString("arg2", body);
+            b.putString("arg3", successText);
             msg.setData(b);
             
             // send message to the handler with the current message handler
@@ -260,17 +319,7 @@ public class ChbMobile extends Activity
         	Message msg = new Message();
             Bundle b = new Bundle();
             b.putString("action", "login");
-            
-            if(user == "new"){
-            	//Aggiorna Credenziali
-            	SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            	b.putString("arg1", sharedPref.getString("cred_user", null));
-            	//debug
-            	Toast toast = Toast.makeText(getBaseContext(), "La nuova password è stata salvata!", Toast.LENGTH_SHORT);
-    	   		toast.show();
-            }else{
-            	b.putString("arg1", user);
-            }
+            b.putString("arg1", user);
             b.putString("arg2", pass);
             msg.setData(b);
             
@@ -425,8 +474,10 @@ public class ChbMobile extends Activity
 	    					
 	    					//avverti interfaccia
 		        			"var fun = function() {" +
-		        			"	var bodyDOM = document.getElementsByTagName('body')[0];"+
-	    					"	setTimeout(Android.OkDone(bodyDOM.className),300); " +
+		        			"	var bodyDOM = document.getElementsByTagName('body')[0];" +
+		        			"	var successText;" +
+		        			"	var successDOM = document.getElementById('success'); if(successDOM){ successText = successDOM.textContent; } else { successText = ''; }"+ //textContent 
+	    					"	setTimeout(Android.OkDone(bodyDOM.className,successText),300); " +
 	    					"	};" +
 	    					"flow.push(fun);" +
 	
@@ -435,8 +486,18 @@ public class ChbMobile extends Activity
 	    					
 	        	);
 	        	
+	        	SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+	        	//Password in chiaro
+	        	if(sharedPref.getBoolean("pref_vcredentials", false) == true) {
+	            	//Imposta campo password come testo
+	            	view.loadUrl("javascript:"+
+		            	"	var elemDOM = document.getElementById('id_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }" +
+		            	"	var elemDOM = document.getElementById('old_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }" +
+		            	"	var elemDOM = document.getElementById('new_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }" +
+		            	"	var elemDOM = document.getElementById('confirm_new_password'); if(elemDOM){ elemDOM.setAttribute('type', 'text'); }"+
+		            	"");
+	        	}
 	        	//Scrivi Utente Password salvati
-	        	 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 	             if(sharedPref.getBoolean("pref_rcredentials", false) == true &&
 	            	(sharedPref.getString("cred_user", null)!=null)	 ) {
 	            	 
@@ -459,7 +520,7 @@ public class ChbMobile extends Activity
 		      			"		if(elemDOM){														" +
 		      			"			if(elemDOMnewp){												" +
 		      			"				if(elemDOMp.value == elemDOMnewp.value){					" +
-		      			"				Android.ActionLogin('new',elemDOMnewp.value);			" +
+		      			"				Android.ActionLogin('refresh',elemDOMnewp.value);			" +
 		      			"				}															" +
 		      			"			}																" +
 		      			"		}																	" +
@@ -469,12 +530,14 @@ public class ChbMobile extends Activity
 		 				);
 	            	 
 	             }
+	             
+	             view.invalidate();
 	        	
         }
         
     }
     
-    private Bundle LastLoginData;
+
 
 	@Override
 	public void onSaveCredentialsDialogPositiveClick(SaveCredentialsDialogFragment dialog) {

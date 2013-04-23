@@ -4,7 +4,9 @@
     <string name="pref_rcredentials_text">Ricorda le credenziali</string>
     <string name="pref_rcredentials_summary">Ricorda username e password utilizzate per l\'accesso.</string>
 	<string name="pref_rcredentials_summary_dis">Attualmente nessun dato viene salvato.</string>
-    
+    <string name="pref_vcredentials_text">Password visibile in chiaro</string>
+    <string name="pref_vcredentials_summary">Visualizza in chiaro la password di accesso.</string>
+	
     <string name="activity_settings_title">Preferenze</string>
     <string name="activity_chb_mobile">ChiantiBanca Mobile</string>
     <string name="activity_chb_title">ChiantiBanca Mobile</string>
@@ -17,9 +19,9 @@
     <string name="dialog_chkroot_message">Sul tuo dispositivo possono essere eseguiti programmi con privilegi di amministratore (Root). Questo potrebbe significare un possibile rischio di sicurezza. Sei sicuro di voler continuare?</string>
     <string name="dialog_disclaimer_title">Dichiarazione di esclusione delle responsabilità</string>
     <string name="dialog_disclaimer_message">
-        Chiantibanca Mobile è un progetto Open Source, il cui codice sorgente è disponibile all\'indirizzo \"https://github.com/m0max/ChbMobile/\".
-        L\'utilizzo della presente applicazione è subordinato all\'accettazione delle presenti e/o informazioni legali (di seguito \'Disclaimer\').
-        La presente applicazione è stata realizzata con il solo scopo di facilitare, e non sostituire, l\'accesso ai servizi denominati \'InBank\' di esclusiva proprietà di Phoenix Informatica Bancaria S.p.A. .
+        Chiantibanca Mobile è un progetto Open Source, il cui codice sorgente è disponibile all\'indirizzo \'https://github.com/m0max/ChbMobile/\'.
+        L\'utilizzo della\'applicazione ChiantiBanca Mobile (di seguito \'App\') è subordinato all\'accettazione delle seguenti informazioni legali e clausole.
+        L\'App è stata realizzata con il solo scopo di facilitare, e non sostituire, l\'accesso ai servizi denominati \'InBank\' di esclusiva proprietà di Phoenix Informatica Bancaria S.p.A. .
         Tali servizi sono di proprietà dei rispettivi autori che come tali ne detengono tutti i diritti.
         Inoltre, la presente applicazione non è in alcun modo relazionata con ChiantiBanca Credito Cooperativo Soc. Coop. che detiene tutti i diritti di sua spettanza. 
         Accettando il presente Disclaimer si accettano anche le seguenti clausole:
