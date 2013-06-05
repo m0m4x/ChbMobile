@@ -81,6 +81,14 @@ public class ChbMobile extends Activity
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         DefaultSharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
         
+        //Personalizzazione x Chb
+        Boolean pref_rcredentials_choice = DefaultSharedPref.getBoolean("pref_rcredentials_choice", false);
+        if (pref_rcredentials_choice == false) {
+        	SharedPreferences.Editor sharedPrefeditor = DefaultSharedPref.edit();
+   	 		sharedPrefeditor.putBoolean("pref_rcredentials_choice", true);
+   	 		sharedPrefeditor.commit();
+        }
+        
         LastLoginData = null;
         ToValidateLoginData = false;
         
