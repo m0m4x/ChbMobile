@@ -1,15 +1,21 @@
 <resources>
 
-    <string name="app_name">Chiantibanca</string>
+    <string name="app_name">ChiantiBanca</string>
+    <string name="widget_chb_title">ChiantiBanca InBank</string>
+    <string name="activity_chb_mobile">ChiantiBanca Mobile</string>
+    <string name="activity_chb_title">ChiantiBanca Mobile</string>
+    
     <string name="pref_rcredentials_text">Ricorda le credenziali</string>
     <string name="pref_rcredentials_summary">Ricorda username e password utilizzate per l\'accesso.</string>
 	<string name="pref_rcredentials_summary_dis">Attualmente nessun dato viene salvato.</string>
     <string name="pref_vcredentials_text">Password visibile in chiaro</string>
     <string name="pref_vcredentials_summary">Visualizza in chiaro la password di accesso.</string>
-	
+    <string name="pref_dohistyles_text">Applica personalizzazioni ChiantiBanca</string>
+    <string name="pref_dohistyles_summary">Visualizza il logo ChiantiBanca e i colori personalizzati nelle pagine interne. (Potrebbe causare rallentamenti su alcuni terminali)</string>
+    <string name="pref_usedesktop_text">Utilizza la versione Desktop di InBank</string>
+    <string name="pref_usedesktop_summary">Se selezionato verrà utilizzata la versione InBank per Desktop, che permette funzionalità aggiuntive.</string>
+    
     <string name="activity_settings_title">Preferenze</string>
-    <string name="activity_chb_mobile">ChiantiBanca Mobile</string>
-    <string name="activity_chb_title">ChiantiBanca Mobile</string>
     <string name="text_dbug">dbug</string>
     <string name="text_pref">Preferenze</string>
     <string name="pref_main_title">Impostazioni</string>

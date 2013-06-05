@@ -1,13 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="it.chiantibanca.mobile"
     android:versionCode="1"
-    android:versionName="1.4.5" >
+    android:versionName="1.5.6" >
     
 	<uses-permission android:name="android.permission.INTERNET" />
 	
     <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="11" />
+        android:minSdkVersion="12"
+        android:targetSdkVersion="12" />
 
     <application
         android:theme="@style/ThemeSelector"
@@ -37,6 +37,17 @@
 			android:configChanges="orientation">
 			
         </activity>
+        
+   		<!-- Widget -->
+        <receiver android:name=".ChbWidget" android:label="@string/widget_chb_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <!-- Broadcast Receiver that will also process our self created action -->
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/chb_widgetproviderinfo" />
+        </receiver>
+        
     </application>
 
 </manifest>
