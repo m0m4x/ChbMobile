@@ -1,7 +1,5 @@
 package it.chiantibanca.mobile;
 
-import it.chiantibanca.mobile.SaveCredentialsDialogFragment.NoticeDialogListener;
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
