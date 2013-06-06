@@ -1,12 +1,5 @@
 package it.chiantibanca.mobile;
 
-import java.io.BufferedReader;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import android.util.Log;
 
 import android.net.Uri;
@@ -27,14 +20,11 @@ import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.webkit.*;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher;
-import android.webkit.WebSettings.ZoomDensity;
 
 public class ChbMobile extends Activity 
 					implements 	SaveCredentialsDialogFragment.NoticeDialogListener,
@@ -80,6 +70,14 @@ public class ChbMobile extends Activity
         //Preferenze Iniziali
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         DefaultSharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+        
+        //Personalizzazione x Chb
+        Boolean pref_rcredentials_choice = DefaultSharedPref.getBoolean("pref_rcredentials_choice", false);
+        if (pref_rcredentials_choice == false) {
+        	SharedPreferences.Editor sharedPrefeditor = DefaultSharedPref.edit();
+   	 		sharedPrefeditor.putBoolean("pref_rcredentials_choice", true);
+   	 		sharedPrefeditor.commit();
+        }
         
         LastLoginData = null;
         ToValidateLoginData = false;
