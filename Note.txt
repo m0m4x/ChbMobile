@@ -173,3 +173,359 @@ class SaveCredentialsDialogFragment extends DialogFragment {
 	        			"						  ';"+
 	        			"		" +
 	        			"		headerDOM.insertBefore(imgchb,headerDOM.childNodes[2]);" +
+	        			
+	        			
+	        			
+Object Controller
+
+	        			"	console.log('ChbMobile> Preparing... ');" +
+	        			"		function Ctrller() {" +
+	        			"			this.ifrms = [];" +
+	        			"			this.add = function add(ifrm){" +
+	        			"					this.ifrms.push(ifrm);" +
+	        			"				};" +
+	        			"			this.print = function run(){" +
+	        			"					curnr = this.nr.slice();" +
+	        			"					curloc = this.loc.slice();" +
+	        			"					while (curnr.length>0){ console.log(curnr.shift() + ' ' + curloc.shift()); };" +
+	        			"				};" +
+	        			"		};" +
+	        			"		var Ctrller = new Ctrller();" +
+	        			"		Ctrller.add('r','rr');" +
+	        			"		Ctrller.print();" +
+	        			    element = null;
+for (var i = 0; i < length; i++) {
+  element = arr[i];
+  // Do something with element i.
+}
+Mutation Observer
+	        				        			/*
+	        			"	try {" +
+						"		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;" +
+						"		if(MutationObserver == undefined){" +
+						"			throw { message: 'MutationObserver not implemented!'};" +
+						"		} else {" +
+						"			var observer = new MutationObserver(function(mutations) {"+
+						"		    	mutations.forEach(function(mutation) {"+
+						"		       	 console.log('Observer>' + mutation.type);"+
+						"		    	});"+
+						"			});" +
+						"		}" +
+						"		var config = { attributes: false, childList: true, characterData: false }" +
+	        			"	} catch ( e ) {" +
+	        			"		console.log('error> '+e.message);" +
+	        			"	} finally {}" +
+	        			//"		observer.observe(base, config);" +*/
+	        			
+	        			
+hasJquery
+	        			"	console.log('ChbMobile> Preparing... ');" +
+	        			"	var hasjQuery;" +
+	        			"	try {" +
+	        			"		if (typeof jQuery != 'undefined') {" +
+	        			"			hasjQuery = true;" +
+	        			"		}else{" +
+	        			"			hasjQuery = false;" +
+	        			"		}" +
+	        			"	} catch ( e ) {" +
+	        			"		console.log('error> '+e.message);" +
+	        			"	}" +
+	        			"" +
+	        			
+	        			
+//Injecting Js - Final fixed code
+        	view.loadUrl("javascript:" +
+	        			"" +
+	        			"	function scanifrm(base,flow,i){" +
+	        			"		i = i+1;" +
+	        			"		console.log('scanifrm> '+i);" +
+	        			"		if (i>1){" +
+	        			"			basecontent = base.contentDocument;" +
+	        			"		} else { " +
+	        			"			basecontent = base;" +
+	        			"		}" +
+	        			"		ifrms = basecontent.getElementsByTagName('iframe');" +
+	        			"		for(var num=0; num<ifrms.length; num++){" +
+	        			"			scanifrm(ifrms[num],flow,i);" +
+	        			"		}" +
+	        			"		basecontent.addEventListener('Load', runifrm(cloneOf(basecontent),flow.slice(),i), false);" +
+	        			"	};" +
+	        			"" +
+	        			"	function runifrm(basecontent,flow,i,observer){" +
+	        			"		console.log('runifrm> '+i);" +
+	        			"		if(0==flow.length){console.log('no flow!');}" +
+	        			"			console.log('runifrm> location: '+basecontent.location );" +
+	        			"			console.log('runifrm> debug: '+ basecontent.body.outerHTML);" +
+	        			"			if(basecontent.body !== undefined){" +
+	        			"				" +
+	        			"				while (flow.length>0) { (flow.shift())(basecontent); };" +
+	        			"			}else{" +
+	        			"				console.log('runifrm> no body, skipped...');" +
+	        			"			}" +
+	        			"	};" +
+	        			"" +
+	        			/*"	console.log('ChbMobile> Preparing... ');" +
+	        			"	var hasjQuery;" +
+	        			"	try {" +
+	        			"		if (typeof jQuery != 'undefined') {" +
+	        			"			hasjQuery = true;" +
+	        			"		}else{" +
+	        			"			hasjQuery = false;" +
+	        			"		}" +
+	        			"	} catch ( e ) {" +
+	        			"		console.log('error> '+e.message);" +
+	        			"	}" +
+	        			"	try {" +
+						"		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;" +
+						"		if(MutationObserver == undefined){" +
+						"			throw { message: 'MutationObserver not implemented!'};" +
+						"		} else {" +
+						"			var observer = new MutationObserver(function(mutations) {"+
+						"		    	mutations.forEach(function(mutation) {"+
+						"		       	 console.log('Observer>' + mutation.type);"+
+						"		    	});"+
+						"			});" +
+						"		}" +
+						"		var config = { attributes: false, childList: true, characterData: false }" +
+	        			"	} catch ( e ) {" +
+	        			"		console.log('error> '+e.message);" +
+	        			"	} finally {}" +
+	        			//"		observer.observe(base, config);" +*/
+	        			"" +
+	        			"console.log('ChbMobile> starting routine... ');" +
+        				"var JsOkDoneContainer = function() {"+
+        				"	try {" +
+        				"		var i=0;" +
+        				"		scanifrm(document,flow.slice(),i);" +	
+        				"	} catch ( e ) {" +
+        				"		console.log('error> '+e.message);" +
+        				"	} finally {" +
+        					//Avverti interfaccia
+	        			"		var JsOkDone = function() {" +
+	        			"			" +
+	        			"				var bodyId;" +
+	        			"				var bodyClassName;" +
+	        			"				var bodyDOM = document.getElementsByTagName('body')[0];" +
+	        			"				var successText;" +
+	        			"				var successDOM = document.getElementById('success'); " +
+	        			"				if ( bodyDOM ) {" +
+	        			"					if ( bodyDOM.hasOwnProperty('id') ) { bodyId = bodyDOM.id; } else { bodyId = '-empty-'; }" +
+	        			"					if ( bodyDOM.hasOwnProperty('class') ) { bodyClassName = bodyDOM.className; } else { bodyClassName = '-empty-'; }" +
+	        			"				} else { bodyId = '-Body-notfound-'; bodyClassName = '-Body-notfound-'; }" +
+	        			"				if ( successDOM ) { successText = successDOM.textContent; } else { successText = ''; }"+ //textContent 
+    					"				setTimeout(Android.OkDone(bodyId,bodyClassName,document.URL,successText),300); " +
+    					"			" +
+    					"		};" +
+    					"		eval(JsOkDone());"+
+        				"	}"+
+    					"};" +
+    					"" +
+    					/*
+    					 * Execute Now
+    					 */
+    					"	JsOkDoneContainer();" 
+    					/*
+    					 * Execute On Document Load
+    					"" +
+    					"if(window.attachEvent) {" +
+    					"	window.attachEvent('onload', JsOkDoneContainer);" +
+    					"} else {" +
+    					"	if(window.onload) {" +
+    					"	var curronload = window.onload;"+
+    					"		var newonload = function() {"+
+    					"			curronload();"+
+    					"			JsOkDoneContainer();"+
+    					"		};"+
+    					"		window.onload = newonload;"+
+    					"	} else {"+
+    					"		window.onload = JsOkDoneContainer;"+
+    					"	}"+
+    					"}"*/
+        	);
+
+
+
+function Ctrller() {	this.ifrmsnr = [];	this.ifrmsloc = [];	this.add = function add(ifrmnr,ifrmloc){			this.ifrms.push(ifrm);			this.ifrms.push(ifrmloc);		};	this.print = function print(){			curifrmsnr = this.ifrmsnr.slice();			curifrmsloc = this.ifrmsloc.slice();			while (curifrms.length>0){ console.log(curifrmsnr.shift() + curifrmsloc.shift()); };		};};
+
+
+
+
+
+
+
+
+
+
+"	var Ctrller = new function () {" +
+							"			this.ifrms_ifr = [];" +
+							"			this.ifrms_flw = [];" +
+							"			this.ifrms_time = [];" +
+							"			this.ifrms_load = [];" +
+							"			this.scan = function scan(base,basecontent,flow,i,isLoading){" +
+							"					i = i+1;" +
+												//Prepara
+							"					console.log(':Scan '+i+ ' ->'+isLoading);" +
+							"					if(hasClass(basecontent.body,'load')){isLoading = true;}" +
+												//Accoda
+							"					self.add(base,basecontent,flow,isLoading);" +
+												//Scansiona interni
+												//NO se isLoading (tanto cambierà)
+							"					ifrms = basecontent.getElementsByTagName('iframe');" +
+							"					for(var num=0; num<ifrms.length; num++){" +
+							"						ifrm = ifrms[num];" +
+							"						ifrm_doc = ifrm.contentDocument ? ifrm.contentDocument : (ifrm.contentWindow.document || ifrm.document);" +
+							"						scanifrm(ifrm,ifrm_doc,flow.slice(),i,isLoading)" +
+							"					}" +
+							"				};\n" +
+							"			this.add = function add(ifr,doc,flw,isloading){" +
+							"					console.log(':Add ');" +
+							"					if(0==flow.length){console.log('no flow!');}" +
+							"					var tmpId = null;" +
+							"					if (ifr === window){ " +
+							"						tmpId = '';" +
+							"					} else {" +
+							"						tmpId = makeid();" +
+							"						ifr.setAttribute('tmpId', tmpId);" +
+							"					}" +
+							"					console.log(' -'+tmpId);" +
+							"					this.ifrms_ifr.push(tmpId);" +
+							"					this.ifrms_flw.push(flw);" +
+							"					this.ifrms_time.push(null);" +
+							"					this.ifrms_load.push(isloading);" +
+							"				};" +
+										// Analizza Iframe raccolti
+							"			this.queue = function queue(){" +
+											//Usa while (flw.length>0) { 
+											//		this.ifrms_ifr.shift()
+											// cosi si elimina l'iform dal Controller poichè analizzato in questo momento
+							"					for (var n = 0; n < this.ifrms_ifr.length; n++) {" +
+							"						console.log(':Queue '+n);" +
+							"						var isLoading = this.ifrms_load[n];" + 
+							"						if(isLoading){" +
+											//Se isLoading
+											//	Metti SetInterval
+											//  altra funzione this.reload ?
+											//	se cambia location --> rifai scanifrm e già eliminato il presente quinid non si ripete
+							"							console.log(' :timed');" +
+							"							var me = this;" +
+							"							this.ifrms_time[n] = setInterval(function(m){me.run(m)} , 500, n);" +
+							"						}else{" +
+											//Se no isLoading
+											//	Esegui
+							"							console.log(' :exec');" +
+							"							this.run(n);" +
+							"						}" +
+							"					}" +
+							"				};" +
+										// Esegui su Iframe
+							"			this.run = function run(i){" +
+							"						console.log(':Run '+i+ ' ');" +
+							"						var ifr_tmpId = this.ifrms_ifr[i];" +
+							"						if (ifr_tmpId != ''){" +
+							"							var docs = getAllElementsWithAttribute(document, 'tmpId','ifr_tmpId');" +
+							"							if(docs.length > 0){" +
+							"								var doc = docs[0].contentDocument ? docs[0].contentDocument : (docs[0].contentWindow.document || docs[0].document);" +
+							"								console.log(':found! '+ifr_tmpId+ ' ');" +
+							"							} else {" +
+							"								console.log(':notfound '+ifr_tmpId+ ' ');" +
+							"								return;" +
+							"							}" +
+							"						} else {" +
+							"							var doc = document;" +
+							"						}" +
+							"						var flw = this.ifrms_flw[i].slice();" +
+							"						while (flw.length>0) { (flw.shift())(doc); };" +
+							/*"						var doc = null;" +*/
+							/*"						if (i>1){ doc = ifr.contentDocument ? ifr.contentDocument : (ifr.contentWindow.document || ifr.document); } else { doc = ifr; }" +*/
+							/*"						var flw = this.ifrms_flw[i].slice();" +
+							"						while (flw.length>0) { (flw.shift())(doc); };" +*/
+							"				};" +
+							"		};" +
+							"		" +
+							"" +
+							"console.log('ChbMobile> Starting routine... ');" +
+							"var JsOkDoneContainer = function() {"+
+							"	try {" +
+							"		var i=0;" +
+							"			if (document.readyState === 'complete') {" +
+							"				console.log('DOM is READY!');" +
+							"				Ctrller.scan( window, document, flow.slice(), i, false);" +
+							"			} else {" +
+							"				console.log('DOM is not yet ready.');" +
+							"				document.addEventListener( 'Load', Ctrller.scan(window,document,flow.slice(),i,false) , false);" +
+							"			}\n" +
+							"		Ctrller.queue();" +
+							"	} catch ( e ) {" +
+							"		console.log('error> '+e.message);" +
+							"	} finally {" +
+							
+							
+							
+							
+							
+							
+    
+    /*
+    Thread longThread = new Thread(TerminateDesktopSession);
+    longThread.start();
+        	
+    private final  Runnable TerminateDesktopSession = new Runnable(){
+        @Override
+        public void run() {
+        	Log.i ("info","Terminating Desktop Session!");
+        	
+        	//Logout action
+        	myCurrentView.loadUrl("javascript:go_exit();");
+        	
+        	//Remove View
+	        webswitcher.removeView(myDesktopView);
+	        
+	        //Clean Vars
+	        myDesktopView = null;
+	        layout_view_desktop = null;
+	    	loaded_page = 10;
+        }
+    };
+    
+    private final  Runnable TerminateMobileSession = new Runnable(){
+        @Override
+        public void run() {
+        	Log.i ("info","Terminating Mobile Session!");
+        	
+        	//Logout action
+        	myCurrentView.loadUrl("https://www.inbank.it/mobi/flow?_flowId=LogoutFlow");
+        	
+	        //Clean Vars
+	    	loaded_page = 0;
+        }
+    };
+    */
+    
+    /*
+    @Override
+    public void onDestroy(){
+    	if(loaded_page > 0){
+    		Thread longThread = new Thread(longOperation);
+    		longThread.start();
+    	}
+    	super.onDestroy();
+    }
+    */
+    
+    
+    
+    
+    
+    
+    
+    
+        /*getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				 Toast.makeText(getBaseContext(), "On long click listener", Toast.LENGTH_LONG).show();
+				return false;
+			}
+        });*/

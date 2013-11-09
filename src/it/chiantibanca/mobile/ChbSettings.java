@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 
-public class SettingsActivity extends PreferenceActivity 
+public class ChbSettings extends PreferenceActivity 
 										 {
 	
     @Override
@@ -17,7 +17,6 @@ public class SettingsActivity extends PreferenceActivity
         addPreferencesFromResource(R.xml.preferences);
         
         CheckBoxPreference ChkBoxRCredPreference = (CheckBoxPreference) findPreference("pref_rcredentials");
-        
         ChkBoxRCredPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -40,8 +39,19 @@ public class SettingsActivity extends PreferenceActivity
         });
         
         CheckBoxPreference ChkBoxVCredPreference = (CheckBoxPreference) findPreference("pref_vcredentials");
-        
         ChkBoxVCredPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor sharedPrefeditor = sharedPref.edit();
+                sharedPrefeditor.putBoolean("pref_vcredentials_needlightreset", true);
+                sharedPrefeditor.commit();
+                return true;
+            }
+        });
+        
+        CheckBoxPreference ChkBoxThisCredPreference = (CheckBoxPreference) findPreference("pref_dohistyles");
+        ChkBoxThisCredPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -52,6 +62,17 @@ public class SettingsActivity extends PreferenceActivity
             }
         });
         
+        ChkBoxThisCredPreference = (CheckBoxPreference) findPreference("pref_usedesktop");
+        ChkBoxThisCredPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor sharedPrefeditor = sharedPref.edit();
+                sharedPrefeditor.putBoolean("pref_vcredentials_needreset", true);
+                sharedPrefeditor.commit();
+                return true;
+            }
+        });
         
     }
     

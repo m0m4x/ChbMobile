@@ -1,50 +1,136 @@
-<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/viewSwitcher"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-		
-		<RelativeLayout
-		    android:id="@+id/layoutload"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent" >
-		        
-				<WebView 
-			    android:id="@+id/loadview"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<ViewSwitcher 
+	    android:id="@+id/viewSwitcher"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+			
+	    	<!-- 
+	    	<WebView
+			     android:id="@+id/loadview"
+			     android:layout_width="fill_parent"
+			     android:layout_height="fill_parent" />
+			-->
+			
+			<RelativeLayout 
+			    android:id="@+id/layoutload"
 			    android:layout_width="fill_parent"
 			    android:layout_height="fill_parent"
-				/>
-				
-			    <Button
-			        android:id="@+id/buttondbg"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_alignParentBottom="true"
-			        android:layout_alignParentRight="true"
-			        android:layout_marginBottom="20dp"
-			        android:layout_marginRight="16dp"
-			        android:text="@string/text_dbug" />
-				
-		    
-		</RelativeLayout>
-		
-		<RelativeLayout 
-		    android:id="@+id/layoutview"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent" >
-		    
-			<ViewFlipper
-			        android:id="@+id/webview"
-			        android:layout_width="fill_parent"
-			        android:layout_height="fill_parent" >
+			    android:background="@color/white" >
 
-			    <WebView  
-				    android:id="@+id/webmobile"
+				<ImageView
+				    android:id="@+id/imageView2"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:alpha="0.9"
+				    android:layout_alignParentBottom="true"
+				    android:scaleType="center"
+				    android:src="@drawable/under_layer"
+				    android:layout_marginBottom="30dp" />
+
+				<LinearLayout
 				    android:layout_width="fill_parent"
-				    android:layout_height="fill_parent" />
+				    android:layout_height="fill_parent"
+				    android:orientation="vertical" >
+					<LinearLayout
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_weight=".2"> 
+					</LinearLayout>
+					<LinearLayout
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_weight=".3"
+					    android:layout_gravity="center_horizontal"
+					    android:orientation="vertical"
+					    >
 
-			</ViewFlipper>
-		        
-		</RelativeLayout>
+						   <ImageView
+						       android:id="@+id/imageView1"
+						       android:layout_width="wrap_content"
+						       android:layout_height="wrap_content"
+						       android:layout_gravity="center_horizontal"
+						       android:src="@drawable/logo_chb" />
+    
+					</LinearLayout>
+					<LinearLayout
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_weight=".3"
+					    android:layout_gravity="center_horizontal"
+					    android:orientation="vertical"
+					    >
+						    <TextView  
+						        android:id="@+id/textView1"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="center_horizontal"
+						        android:layout_marginBottom="50dp"
+						        android:text="Caricamento in Corso..."
+						        /> 
+						    <ProgressBar
+						        android:id="@+id/progressBar"
+						        style="?android:attr/progressBarStyleHorizontal"
+						        android:layout_width="fill_parent"
+						        android:layout_height="wrap_content"
+						        android:layout_above="@+id/buttondbg"
+						        android:layout_alignParentLeft="true"
+						        android:layout_marginRight="20dp"
+						        android:layout_marginLeft="20dp"
+						        />
+					</LinearLayout>
+					<LinearLayout
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_weight=".05"
+					    android:orientation="vertical"
+					    >
+						    <Button
+						        android:id="@+id/buttondbg"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_gravity="right"
+						        android:layout_marginBottom="20dp"
+						        android:layout_marginRight="16dp"
+						        android:text="@string/text_dbug"
+						        android:alpha="0.2" />
+					</LinearLayout>
+				</LinearLayout>
+				
+	    
+			</RelativeLayout>
+	    
+			
+			<RelativeLayout 
+			    android:id="@+id/layoutview"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent" >
+			    
+				<ViewFlipper
+				        android:id="@+id/webview"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent" >
+	
+				    <WebView  
+					    android:id="@+id/webmobile"
+					    android:layout_width="fill_parent"
+					    android:layout_height="fill_parent" />
+	
+				</ViewFlipper>
+			        
+			</RelativeLayout>
+	
+	</ViewSwitcher>
+	
+    <!--  <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_below="@id/viewSwitcher" />
+ 	-->
 
-</ViewSwitcher>
-
+</RelativeLayout>

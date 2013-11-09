@@ -1,54 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="it.chiantibanca.mobile"
+    android:installLocation="preferExternal"
     android:versionCode="1"
-    android:versionName="1.5.6" >
-    
-	<uses-permission android:name="android.permission.INTERNET" />
-	
+    android:versionName="1.7.0" >
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="8"
         android:targetSdkVersion="12" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
-        android:theme="@style/ThemeSelector"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:allowBackup="true"
-        android:hardwareAccelerated="true">
-        
+        android:theme="@style/ThemeSelector" >
         <activity
-            android:name=".ChbDisclaimer"
-            android:label="@string/activity_chb_title"
+            android:name="it.chiantibanca.mobile.ChbMain"
+            android:configChanges="orientation"
             android:hardwareAccelerated="true"
-            android:configChanges="orientation">
+            android:label="@string/activity_chb_title" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChbMobile"
-            android:label="@string/activity_chb_title"
-            android:configChanges="orientation">
-            
+            android:name="it.chiantibanca.mobile.ChbMobile"
+            android:configChanges="orientation"
+            android:label="@string/activity_chb_title" >
         </activity>
-        <activity 
-            android:name="SettingsActivity" 
-            android:label="@string/activity_settings_title" 
-			android:configChanges="orientation">
-			
+        <activity
+            android:name="it.chiantibanca.mobile.ChbSettings"
+            android:configChanges="orientation"
+            android:label="@string/activity_settings_title" >
         </activity>
-        
-   		<!-- Widget -->
-        <receiver android:name=".ChbWidget" android:label="@string/widget_chb_title">
+
+        <!-- Widget -->
+        <receiver
+            android:name="it.chiantibanca.mobile.ChbWidget"
+            android:label="@string/widget_chb_title" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <!-- Broadcast Receiver that will also process our self created action -->
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/chb_widgetproviderinfo" />
         </receiver>
-        
+
+        <activity
+            android:name="it.chiantibanca.mobile.ChbList"
+            android:label="@string/title_activity_chb_list" 
+            >
+        </activity>
     </application>
 
 </manifest>

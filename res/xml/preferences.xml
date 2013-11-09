@@ -6,8 +6,8 @@
 	    
 	    <CheckBoxPreference android:title="@string/pref_rcredentials_text" 
 	        android:summary="@string/pref_rcredentials_summary" 
-	        android:enabled="false"
-	        android:defaultValue="false" 
+	        android:enabled="true"
+	        android:defaultValue="true" 
 	        android:key="pref_rcredentials"/>
 	    
 	    <CheckBoxPreference android:title="@string/pref_vcredentials_text" 
@@ -22,11 +22,22 @@
 	        android:defaultValue="false" 
 	        android:key="pref_dohistyles"/>
 	    
-		<CheckBoxPreference android:title="@string/pref_usedesktop_text" 
-	        android:summary="@string/pref_usedesktop_summary" 
+		<CheckBoxPreference android:title="@string/pref_usemobile_text" 
+	        android:summary="@string/pref_usemobile_summary" 
 	        android:enabled="true"
 	        android:defaultValue="true" 
 	        android:key="pref_usedesktop"/>
+	
+	</PreferenceCategory>
+	
+	<PreferenceCategory 
+		android:title="@string/pref_view_title"
+		android:key="pref_view">
+		
+		<CheckBoxPreference android:title="@string/pref_useleathertheme_text" 
+	        android:summary="@string/pref_useleathertheme_summary" 
+	        android:defaultValue="false" 
+	        android:key="pref_useleathertheme"/>
 	    
 	</PreferenceCategory>
 

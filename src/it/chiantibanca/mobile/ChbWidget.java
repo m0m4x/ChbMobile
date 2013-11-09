@@ -19,7 +19,7 @@ public class ChbWidget extends AppWidgetProvider {
 	        final int N = appWidgetIds.length;
 	        Log.i ("info","OnUpdate");
 	        
-	        Toast.makeText(context, "OnUpdate"+N, Toast.LENGTH_SHORT).show();
+	        // Toast.makeText(context, "OnUpdate"+N, Toast.LENGTH_SHORT).show();
 	        
 	        // Perform this loop procedure for each App Widget that belongs to this provider
 	        for (int i=0; i<N; i++) {
